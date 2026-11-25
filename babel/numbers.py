@@ -1597,6 +1597,10 @@ class NumberPattern:
         exp = value.adjusted()
         scale = maximum - 1 - exp
         digits = str(value.scaleb(scale).quantize(decimal.Decimal(1)))
+        if len(digits) > maximum:
+            exp += 1
+            scale -= 1
+            digits = str(value.scaleb(scale).quantize(decimal.Decimal(1)))
         if scale <= 0:
             result = digits + '0' * -scale
         else:

@@ -63,6 +63,9 @@ def test_significant_digits():
     assert numbers.format_decimal(0.1, '@', locale='en_US') == '0.1'
     assert numbers.format_decimal(0.1, '@#', locale='en_US') == '0.1'
     assert numbers.format_decimal(0.1, '@@', locale='en_US') == '0.10'
+    assert numbers.format_decimal(decimal.Decimal('0.00999'), '@@', locale='en_US') == '0.010'
+    assert numbers.format_decimal(decimal.Decimal('0.0999'), '@@', locale='en_US') == '0.10'
+    assert numbers.format_decimal(decimal.Decimal('0.000999'), '@@', locale='en_US') == '0.0010'
 
 
 def test_decimals():
